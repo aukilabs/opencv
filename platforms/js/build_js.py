@@ -83,7 +83,7 @@ class Builder:
             "cmake",
             "-DPYTHON_DEFAULT_EXECUTABLE=%s" % sys.executable,
                "-DENABLE_PIC=FALSE", # To workaround emscripten upstream backend issue https://github.com/emscripten-core/emscripten/issues/8761
-               "-DCMAKE_BUILD_TYPE=Release",
+               "-DCMAKE_BUILD_TYPE=Debug",
                "-DCPU_BASELINE=''",
                "-DCMAKE_INSTALL_PREFIX=/usr/local",
                "-DCPU_DISPATCH=''",
