@@ -83,7 +83,6 @@ class Builder:
             "cmake",
             "-DPYTHON_DEFAULT_EXECUTABLE=%s" % sys.executable,
                "-DENABLE_PIC=FALSE", # To workaround emscripten upstream backend issue https://github.com/emscripten-core/emscripten/issues/8761
-               "-DCMAKE_BUILD_TYPE=Debug",
                "-DCPU_BASELINE=''",
                "-DCMAKE_INSTALL_PREFIX=/usr/local",
                "-DCPU_DISPATCH=''",
@@ -168,6 +167,11 @@ class Builder:
 
         if self.options.webnn:
             cmd.append("-DWITH_WEBNN=ON")
+
+        if self.options.debug:
+            cmd.append("-DCMAKE_BUILD_TYPE=Debug")
+        else:
+            cmd.append("-DCMAKE_BUILD_TYPE=Release")
 
         flags = self.get_build_flags()
         if flags:
@@ -259,6 +263,7 @@ if __name__ == "__main__":
     parser.add_argument('--config', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'opencv_js.config.py'),
                         help="Specify configuration file with own list of exported into JS functions")
     parser.add_argument('--webnn', action="store_true", help="Enable WebNN Backend")
+    parser.add_argument('--debug', default=False, action="store_true", help="Build OpenCV in release or debug mode")
 
     transformed_args = ["--cmake_option=%s".format(arg) if arg[:2] == "-D" else arg for arg in sys.argv[1:]]
     args = parser.parse_args(transformed_args)
