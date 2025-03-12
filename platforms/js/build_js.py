@@ -171,9 +171,9 @@ class Builder:
             cmd.append("-DWITH_WEBNN=ON")
             
         if self.options.debug:
-             cmd.append("-DCMAKE_BUILD_TYPE=Debug")
-         else:
-             cmd.append("-DCMAKE_BUILD_TYPE=Release")
+            cmd.append("-DCMAKE_BUILD_TYPE=Debug")
+        else:
+            cmd.append("-DCMAKE_BUILD_TYPE=Release")
 
         flags = self.get_build_flags()
         if flags:
