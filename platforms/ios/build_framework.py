@@ -110,6 +110,8 @@ class Builder:
             dirs.append(main_build_dir)
 
             cmake_flags = []
+            cmake_flags.append("-DWITH_PROTOBUF=OFF")
+
             if self.contrib:
                 cmake_flags.append("-DOPENCV_EXTRA_MODULES_PATH=%s" % self.contrib)
             if xcode_ver >= 7 and target[1] == 'iPhoneOS' and self.bitcodedisabled == False:
