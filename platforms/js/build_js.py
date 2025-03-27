@@ -175,6 +175,8 @@ class Builder:
         else:
             cmd.append("-DCMAKE_BUILD_TYPE=Release")
 
+        cmd.append("-DWITH_PROTOBUF=OFF")
+
         flags = self.get_build_flags()
         if flags:
             cmd += ["-DCMAKE_C_FLAGS='%s'" % flags,
